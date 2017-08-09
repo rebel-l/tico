@@ -5,7 +5,6 @@
 Homestead.yaml
 Homestead.json
 .env
-.gitignore
 database.sqlite
 logs/
 jira.php
