@@ -14,3 +14,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     nginx
 EXPOSE 80
+
+COPY ./scripts/docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod 755 /docker-entrypoint.sh
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
