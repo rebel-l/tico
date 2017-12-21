@@ -8,3 +8,4 @@ Homestead.json
 database.sqlite
 logs/
 jira.php
+*.log
