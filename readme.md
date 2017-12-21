@@ -26,3 +26,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #### License
 
 "TiCo" is open-sourced software licensed under the [GPL-3.0 license](http://opensource.org/licenses/GPL-3.0)
+
+## Run Application
+
+```bash
+git clone git@github.com:rebel-l/tico.git
+cd tico
+docker-compose up -d
+docker-compose exec bash
+```
