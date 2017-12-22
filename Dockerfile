@@ -16,20 +16,35 @@ RUN apt-get update \
     software-properties-common
 
 # Install necessary packages
-RUN apt-get purge `dpkg -l | grep php| awk '{print $2}' |tr "\n" " "` \
+RUN apt-get purge `dpkg -l | grep php | awk '{print $2}' |tr "\n" " "` \
     && export LC_ALL=C.UTF-8 \
     && add-apt-repository ppa:ondrej/php \
     && apt-get update && apt-get install -y \
         cups \
         fop \
         nginx \
-        nodejs \
-        npm \
         php5.6-cli \
         php5.6-fpm \
         php5.6-curl \
+        php5.6-mbstring \
         php5.6-sqlite \
-        php5.6-xsl
+        php5.6-xsl \
+    && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get install -y build-essential \
+    && npm -g install bower \
+    && npm -g install gulp
+
+#RUN wget -O /tmp/nodejs.tar.gz https://nodejs.org/dist/v4.4.3/node-v4.4.3-linux-x64.tar.gz \
+#    && tar -C /tmp/ -xzf /tmp/nodejs.tar.gz \
+#    && rm /tmp/nodejs.tar.gz \
+#    && mv /tmp/node-v4.4.3-linux-x64 /opt/node \
+#    && mkdir /opt/node/etc \
+#    && echo 'prefix=/usr/local' > /opt/node/etc/npmrc \
+#    && ln -s /opt/node/bin/node /usr/local/bin/node \
+#    && ln -s /opt/node/bin/npm /usr/local/bin/npm \
+
+
 EXPOSE 80
 
 # install composer

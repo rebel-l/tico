@@ -47,6 +47,25 @@
         ],
         "post-create-project-cmd": [
             "php artisan key:generate"
+        ],
+        "build-frontend": [
+            "npm install",
+            "bower install",
+            "gulp"
+        ],
+        "create-database": [
+          "touch storage/database.sqlite",
+          "composer run-script post-install-permissions",
+          "php artisan migrate"
+        ],
+        "post-install-permissions": [
+          "sudo chown -R root:www-data [your_project_folder]",
+          "sudo chmod -R 775 storage"
+        ],
+        "build": [
+          "composer run-script post-create-project-cmd",
+          "composer run-script build-frontend",
+          "composer run-script create-database"
         ]
     },
     "config": {
