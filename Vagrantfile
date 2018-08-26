@@ -2,8 +2,8 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-    config.vm.box = "Ubuntu14"
-    config.vm.box_url = "https://www.dropbox.com/s/gzbxpgjih67uu2t/ubuntu1404lts5018.box?dl=1"
+    config.vm.box = "Ubuntu1804"
+    config.vm.box_url = "https://www.dropbox.com/s/lq0a011b8xhddpg/ubuntu1804lts5212.box?dl=1"
     config.ssh.insert_key = false
 
     config.hostmanager.enabled				= true
@@ -27,9 +27,17 @@ Vagrant.configure(2) do |config|
             chef.data_bags_path = "./vendor/rebel-l/sisa/data_bags"
             chef.environment = "development"
             chef.add_role "WebServer"
+            chef.add_recipe "Php::composer"
             chef.add_recipe "NodeJs"
+            chef.add_recipe "Java"
+            chef.add_recipe "Fop"
+            chef.add_recipe "Cups"
 
             chef.json = {
+                'NodeJs' => {
+                    'bower' => true,
+                    'gulp'  => true
+                },
                 'Php'   => {
                     'default'   => {
                         'version'   => '5.6'
